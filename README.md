@@ -2,7 +2,7 @@
 
 Real vaqt tizimlari fani bo‘yicha amaliy ishlarni **brauzerda** bajarish uchun ochiq veb-ilova.
 Server kerak emas — barcha hisob-kitoblar foydalanuvchi brauzerida bajariladi, sayt istalgan statik hostingda
-(GitHub Pages va h.k.) ishlaydi.
+(Netlify, GitHub Pages va h.k.) ishlaydi.
 
 ## Bo‘limlar
 
@@ -49,16 +49,15 @@ npm test           # testlar
 npm run build      # dist/ papkasiga statik sayt
 ```
 
-## Hammaga ochiq qilish (GitHub Pages)
+## Joylash (Netlify)
 
-`.github/workflows/deploy.yml` har bir `main` branchga push qilinganda testlarni ishga tushiradi va saytni
-GitHub Pages’ga joylaydi. Bir marta sozlash kerak:
+Sayt Netlify’da `main` branchdan avtomatik yig‘iladi — sozlamalar [`netlify.toml`](netlify.toml) faylida
+(`npm run build`, natija `dist/` papkasida, Node 22). `main` ga har bir push saytni yangilaydi.
 
-1. GitHub’da repozitoriy → **Settings → Pages**
-2. **Source: GitHub Actions** ni tanlang
-3. `main` branchga push qiling — sayt `https://<foydalanuvchi>.github.io/<repozitoriy>/` manzilida ochiladi
+GitHub Actions (`.github/workflows/ci.yml`) har bir push va pull requestda testlar va build’ni tekshiradi.
 
-`dist/` papkasini istalgan statik hostingga (Netlify, Vercel, oddiy veb-server) ham yuklash mumkin.
+`dist/` papkasini istalgan boshqa statik hostingga (GitHub Pages, Vercel, oddiy veb-server) ham yuklash mumkin —
+sayt nisbiy yo‘llar va hash-marshrutlash (`#/...`) bilan ishlaydi, server sozlamasi kerak emas.
 
 ## Kengaytirish
 
